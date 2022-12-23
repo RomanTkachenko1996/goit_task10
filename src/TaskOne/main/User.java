@@ -1,4 +1,4 @@
-package TaskOne.goit_task10;
+package TaskOne.main;
 
 import java.io.*;
 import java.util.regex.Matcher;
