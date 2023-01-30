@@ -2,18 +2,9 @@ package TaskThree;
 
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
-/**
- * Напишіть метод, який буде рахувати частоту кожного слова у файлі words.txt.
- * <p>
- * Вважаємо що:
- * <p>
- * words.txt містить лише слова в нижньому регістрі, розділені пробілом
- * Кожне слово містить лише літери в нижньому регістрі
- * Слова розділені одним або декількома пробілами, або переносом рядка
- */
 public class WordsCounter {
     public static void main(String[] args) {
         StringBuilder words = new StringBuilder();
@@ -26,7 +17,8 @@ public class WordsCounter {
             throw new RuntimeException(e);
         }
         String[] wordsArray = words.toString().split(" ");
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new TreeMap<>();
+
         for (String word : wordsArray) {
             int counter = 1;
             if (!(word.equals(" "))) {
@@ -38,6 +30,9 @@ public class WordsCounter {
                 }
             }
         }
-        System.out.println(map);
+        map.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .forEach(System.out::println);
     }
 }
